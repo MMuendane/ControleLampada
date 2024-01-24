@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> minha pagina</title>
+
+        <link rel= "stylesheet" href="css/bootstrap.css">
+</head>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+    apiKey: "AIzaSyA8t4QVaGbU9UNoBC6z1xZ0nHlkdi7TQpc",
+    authDomain: "controle-de-lampada-feeef.firebaseapp.com",
+    projectId: "controle-de-lampada-feeef",
+    storageBucket: "controle-de-lampada-feeef.appspot.com",
+    messagingSenderId: "153298826478",
+    appId: "1:153298826478:web:5ba365d8ec8348e424efff"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+firebase.database().ref("SALA/estado").on("value", snapshot => {
+  document.querySelector("#estado-led").textContent = snapshot.val();
+});
+
+
+    function ledOn() {
+      firebase.database().ref("SALA").set({
+        estado: "LIGADA"
+      });
+    }
+
+    function ledOff() {
+      firebase.database().ref("SALA").set({
+        estado: "DESLIGADA"
+      });
+    }
+  </script>
+  <script src="app.js" defer></script>
+
+<body class="bg-secondary">
+<nav>
+<h1><center>TIME'S EDUCATION MOZAMBIQUE</center></h1>
+</nav>
+<div id="imagem">
+ <img class= "img-thumbnail float-center w-25"src="pexels11.JFIF">
+</div>
+
+<div id="botao">
+<button class="btn btn-success" "led-on" onclick="ledOn()"> ligar</button>
+<button class="btn btn-success" "led-off" onclick="ledOff"> desligar</button>
+</div>
+
+<div id="nome">
+<p>@M.Muendane</p>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+</div>
+</body>
+</html>
